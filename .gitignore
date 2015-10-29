@@ -1,0 +1,14 @@
+.rake_test_cache
+
+###
+# Ignore Chef key files and secrets
+###
+.chef/*.pem
+.chef/encrypted_data_bag_secret
+
+.idea
+.chef
+.kitchen/
+*validator.pem
+*Berksfile.lock
+VERSION
