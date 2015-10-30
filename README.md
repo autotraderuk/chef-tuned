@@ -1,7 +1,7 @@
 #Tuned Chef Cookbook
 
 [![Build Status](https://img.shields.io/snap-ci/davemeekin/tuned/master.svg)](https://snap-ci.com/davemeekin/tuned/branch/master)
-[![Build Status](https://img.shields.io/travis-ci/davemeekin/tuned/master.svg)](https://snap-ci.com/davemeekin/tuned/branch/master)
+[![Build Status](https://img.shields.io/travis-ci/autotraderuk/chef-tuned/master.svg)](https://snap-ci.com/autotraderuk/chef-tuned/branch/master)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/davemeekin/tuned?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 #Description
