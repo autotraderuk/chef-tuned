@@ -1,7 +1,7 @@
 #Tuned Chef Cookbook
 
 [![Build Status](https://travis-ci.org/autotraderuk/chef-tuned.svg?branch=master)](https://travis-ci.org/autotraderuk/chef-tuned)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/davemeekin/tuned?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/autotraderuk/chef-tuned?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 #Description
 
