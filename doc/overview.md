@@ -1,6 +1,5 @@
-[![Build Status](https://img.shields.io/snap-ci/davemeekin/tuned/master.svg)](https://snap-ci.com/davemeekin/tuned/branch/master)
-[![Build Status](https://img.shields.io/travis-ci/davemeekin/tuned/master.svg)](https://snap-ci.com/davemeekin/tuned/branch/master)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/davemeekin/tuned?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/autotraderuk/chef-tuned.svg?branch=master)](https://travis-ci.org/autotraderuk/chef-tuned)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/autotraderuk/chef-tuned?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Installs tuned and enables/disables tuned profiles. For more information on tuned please see the [Red Hat documentation](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Power_Management_Guide/Tuned.html) on this daemon
 

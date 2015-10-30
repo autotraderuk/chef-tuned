@@ -166,4 +166,4 @@ end
 
 Maintainer:: Dave Meekin (<davemeekin.github@gmail.com>)
 
-License:: All rights reserved
+License:: Apache v2.0
