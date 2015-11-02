@@ -7,20 +7,18 @@ action :create do
   # set tuned config path. Different for EL6/7
   libdir = (node['platform_version'].to_i < 7) ? '/etc/tune-profiles/' : '/usr/lib/tuned/'
 
-  # defines local variables based on profile name (defaults to hostname)
+  # defines local variables based on profile name
   profile = {
     :name => new_resource.name,
     :libdir => libdir + new_resource.name
   }
 
   # initialise empty attribute hash in case no attributes where specified
+  # default [main] entry
   node.default['tuned'] ||= {}
   node.default['tuned']['profile'] ||= {}
   node.default['tuned']['profile'][profile[:name]] ||= {}
   node.default['tuned']['profile'][profile[:name]]['main'] ||= {}
-  node.default['tuned']['profile'][profile[:name]]['cpu'] ||= {}
-  node.default['tuned']['profile'][profile[:name]]['sysctl'] ||= {}
-  node.default['tuned']['profile'][profile[:name]]['sysfs'] ||= {}
 
   # create tuned profile directory
   directory profile[:libdir] do
