@@ -9,10 +9,10 @@ before_install:
 - curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -v 12.0.3
 
 script:
-- bundle exec foodcritic -f any .
-- bundle exec rubocop
-- bundle exec rspec
-- kitchen test
+- chef exec foodcritic -f any .
+- chef exec rubocop
+- chef exec rspec
+- chef exec kitchen test
 notifications:
   webhooks:
     urls:
