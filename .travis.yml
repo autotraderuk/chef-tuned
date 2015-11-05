@@ -14,7 +14,8 @@ script:
 - chef exec foodcritic -f any .
 - chef exec rubocop
 - chef exec rspec
-- chef exec kitchen test 7
+- export KITCHEN_LOCAL_YAML=.kitchen.docker.yml 
+- chef exec kitchen verify 7
 notifications:
   webhooks:
     urls:

@@ -1,0 +1,20 @@
+driver:
+ name: docker
+ binary: docker
+ use_sudo: true
+
+provisioner:
+  name: chef_zero
+
+platforms:
+- name: centos-6.6
+- name: centos-7.1
+  driver_config:
+    image: milcom/centos7-systemd
+    privileged: true
+
+suites:
+  - name: default
+    run_list:
+       - recipe[test_tuned::create_apply_profile]
+    attributes:
