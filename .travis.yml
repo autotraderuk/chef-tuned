@@ -14,7 +14,7 @@ script:
 - chef exec foodcritic -f any .
 - chef exec rubocop
 - chef exec rspec
-- chef exec kitchen test
+- chef exec kitchen test 7
 notifications:
   webhooks:
     urls:
