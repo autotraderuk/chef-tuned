@@ -7,6 +7,8 @@ services:
   - docker
 before_install:
 - curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -v 12.0.3
+- chef gem install kitchen-docker
+- chef gem list
 
 script:
 - chef exec foodcritic -f any .
