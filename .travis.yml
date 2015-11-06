@@ -15,7 +15,7 @@ script:
 - chef exec rubocop
 - chef exec rspec
 - export KITCHEN_LOCAL_YAML=.kitchen.docker.yml 
-- chef exec kitchen verify
+- chef exec kitchen test
 notifications:
   webhooks:
     urls:
