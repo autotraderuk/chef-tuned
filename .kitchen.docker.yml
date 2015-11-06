@@ -11,8 +11,8 @@ platforms:
 - name: centos-6.6
 - name: centos-7.1
   driver_config:
-    #image: centos:centos7
-    dockerfile: test/Dockerfile
+    image: dmeekin/centos71-dbus
+    #dockerfile: test/Dockerfile
     #run_command: /usr/sbin/init
     privileged: true
 
