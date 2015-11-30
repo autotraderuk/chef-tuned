@@ -136,7 +136,8 @@ end
 
 ## Platform:
 
-* RHEL/CentOS (>= 7.0)
+* RHEL (>= 6.6)
+* CentOS (>= 6.6)
 
 ## Cookbooks:
 
