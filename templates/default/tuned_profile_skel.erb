@@ -1,10 +1,2 @@
 # Dynamically generated <%= @profiles['name'] %> tuned profile file, applied by Chef!
-<% #iterate through keys firstly sorting so that 'main' is the first element dealt with then sorting the remaing elements alphabetised   -%>
-<% #If the first argument, a should be sorted first, -1 should be returned; if the second argument, b should be sorted first, 1 should be returned -%>
-<% @profiles['values'].keys.sort { | a, b | a.to_s == 'main' ? -1 : ( b.to_str == 'main' ? 1 : ( a <=> b ) ) }.each do |header, hashref| -%>
-[<%= header %>]
-<% #iterate through the profile sections defined in attributes printing key value pairs -%>
-<% @profiles['values'][header].each do |entry, value| -%>
-<%= entry %>=<%= value %>
-<% end -%>
-<% end -%>
+<%= ::Tuned::Utils.to_ini(@profiles['values']) %>
