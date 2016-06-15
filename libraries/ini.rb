@@ -1,6 +1,7 @@
 # Helpers for working with INI files.
 #
 module Tuned
+  # Utils namespace
   module Utils
     module_function
 
@@ -16,7 +17,16 @@ module Tuned
         # If the first argument, a should be sorted first, -1 should be
         # returned; if the second argument, b should be sorted first, 1 should
         # be returned.
-        ini_data.keys.sort{ | a, b | a.to_s == 'main' ? -1 : ( b.to_str == 'main' ? 1 : ( a <=> b ) ) }.each do |section_name|
+        sections_name = ini_data.keys.sort do |a, b|
+          if a.to_s == 'main'
+            -1
+          elsif b.to_str == 'main'
+            1
+          else
+            a <=> b
+          end
+        end
+        sections_name.each do |section_name|
           buf << "[#{section_name}]\n"
           ini_data[section_name].each do |key, value|
             buf << "#{key}=#{escape_ini_value(value)}\n"

@@ -6,6 +6,7 @@ end
 use_inline_resources if defined?(use_inline_resources)
 
 action :create do
+  tuned_requirements
   # set tuned config path. Different for EL6/7
   libdir = (node['platform_version'].to_i < 7) ? '/etc/tune-profiles/' : '/usr/lib/tuned/'
 
@@ -14,8 +15,6 @@ action :create do
     name: new_resource.name,
     libdir: libdir + new_resource.name
   )
-
-  requirements
 
   # initialise empty attribute hash in case no attributes where specified
   # default [main] entry
@@ -40,8 +39,7 @@ action :create do
 end
 
 action :enable do
-  requirements
-
+  tuned_requirements
   profile = {
     :name => new_resource.name
   }
@@ -53,8 +51,7 @@ action :enable do
 end
 
 action :disable do
-  requirements
-
+  tuned_requirements
   profile = {
     :name => new_resource.name
   }
@@ -66,7 +63,7 @@ action :disable do
 end
 
 action :default do
-  requirements
+  tuned_requirements
 
   profile = {
     :name => new_resource.name
@@ -78,9 +75,12 @@ action :default do
   end
 end
 
-def requirements
-  # Requirement
-  package 'tuned'
+private
+
+def tuned_requirements
+  package 'tuned' do
+    action :install
+  end
 
   service 'tuned' do
     action [:enable, :start]
