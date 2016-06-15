@@ -14,3 +14,7 @@ suites:
     run_list:
        - recipe[test_tuned::create_apply_profile]
     attributes:
+  - name: provider
+    run_list:
+       - recipe[test_tuned::create_provider_apply_profile]
+    attributes:
