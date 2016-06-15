@@ -86,10 +86,6 @@ transparent_hugepage=never
 transparent_hugepage.defrag=never
 ```
 
-###include the default recipe
-````
-include tuned::default
-````
 Installs tuned if not already installed
 
 ###create and enable a profile
@@ -114,12 +110,33 @@ tuned_profile 'myprofile' do
 end
 ````
 
-###default to tuned reccomended profile
+###default to tuned recommended profile
 ````
 tuned_profile 'myprofile' do
   action [:default]
 end
 ````
+###Library Provider overview
+####Property:
+
+
+Name | Description | Default
+-----|-------------|--------
+`main` | Define the _[main]_ profile definition section | {}
+`plugins` | Define the _plugins_ profile definition | {}
+
+
+####Property example:
+```
+tuned_profile 'lwrp_profile' do
+  main (include: 'latency-performance')
+  plugins(cpu: {
+            governor: 'performance',
+            energy_perf_bias: 'performance'
+          })
+  action [:create, :enable]
+end
+```
 
 #Contributing
 1. Fork it
