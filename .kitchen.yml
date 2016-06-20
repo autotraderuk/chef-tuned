@@ -6,11 +6,15 @@ provisioner:
   require_chef_omnibus: true
 
 platforms:
-- name: centos-6.6
+- name: centos-6.7
 - name: centos-7.1
 
 suites:
   - name: default
     run_list:
        - recipe[test_tuned::create_apply_profile]
+    attributes:
+  - name: provider
+    run_list:
+       - recipe[test_tuned::create_provider_apply_profile]
     attributes:

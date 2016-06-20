@@ -9,9 +9,10 @@ provisioner:
 
 platforms:
 - name: centos-6.6
-- name: centos-7.1
+- name: centos-7.2
   driver_config:
-    image: dmeekin/centos71-dbus
+    image: centos:centos7
+    run_command: /usr/sbin/init
     privileged: true
 
 suites:
@@ -19,4 +20,7 @@ suites:
     run_list:
        - recipe[test_tuned::create_apply_profile]
     attributes:
-    
+  - name: provider
+    run_list:
+       - recipe[test_tuned::create_provider_apply_profile]
+    attributes:

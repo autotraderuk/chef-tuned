@@ -3,22 +3,22 @@ def whyrun_supported?
   true
 end
 
+use_inline_resources if defined?(use_inline_resources)
+
 action :create do
+  tuned_requirements
   # set tuned config path. Different for EL6/7
   libdir = (node['platform_version'].to_i < 7) ? '/etc/tune-profiles/' : '/usr/lib/tuned/'
 
   # defines local variables based on profile name
-  profile = {
-    :name => new_resource.name,
-    :libdir => libdir + new_resource.name
-  }
+  profile = Mash.new(
+    name: new_resource.name,
+    libdir: libdir + new_resource.name
+  )
 
   # initialise empty attribute hash in case no attributes where specified
   # default [main] entry
-  node.default['tuned'] ||= {}
-  node.default['tuned']['profile'] ||= {}
-  node.default['tuned']['profile'][profile[:name]] ||= {}
-  node.default['tuned']['profile'][profile[:name]]['main'] ||= {}
+  profile['values'] = node['tuned']['profile'][profile['name']] || { main: new_resource.main }.merge(new_resource.plugins)
 
   # create tuned profile directory
   directory profile[:libdir] do
@@ -34,15 +34,12 @@ action :create do
     group 'root'
     mode 00644
     cookbook 'tuned'
-    variables :profiles => {
-      'name' => profile[:name],
-      'values' => node['tuned']['profile'][profile[:name]].to_hash
-    }
+    variables profiles: profile
   end
-  new_resource.updated_by_last_action(true)
 end
 
 action :enable do
+  tuned_requirements
   profile = {
     :name => new_resource.name
   }
@@ -51,10 +48,10 @@ action :enable do
   execute "tuned #{profile[:name]} enable" do
     command "tuned-adm profile #{profile[:name]}"
   end
-  new_resource.updated_by_last_action(true)
 end
 
 action :disable do
+  tuned_requirements
   profile = {
     :name => new_resource.name
   }
@@ -63,10 +60,11 @@ action :disable do
   execute "tuned #{profile[:name]} disable" do
     command 'tuned-adm off'
   end
-  new_resource.updated_by_last_action(true)
 end
 
 action :default do
+  tuned_requirements
+
   profile = {
     :name => new_resource.name
   }
@@ -75,5 +73,16 @@ action :default do
   execute "tuned #{profile[:name]} default" do
     command 'tuned-adm recommend|xargs -r tuned-adm profile'
   end
-  new_resource.updated_by_last_action(true)
+end
+
+private
+
+def tuned_requirements
+  package 'tuned' do
+    action :install
+  end
+
+  service 'tuned' do
+    action [:enable, :start]
+  end
 end
