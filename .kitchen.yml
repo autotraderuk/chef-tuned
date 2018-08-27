@@ -18,3 +18,22 @@ suites:
     run_list:
        - recipe[test_tuned::create_provider_apply_profile]
     attributes:
+  - name: manage
+    run_list:
+      - recipe[tuned::manage]
+    attributes:
+      tuned:
+        enabled_profile: latency-performance
+  - name: manage-custom
+    run_list:
+      - recipe[tuned::manage]
+    attributes:
+      tuned:
+        profile:
+          myprofile:
+            vm:
+              transparent_hugepage: never
+              transparent_hugepage.defrag: never
+            main:
+              include: latency-performance
+        enabled_profile: myprofile
