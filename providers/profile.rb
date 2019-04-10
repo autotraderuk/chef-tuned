@@ -46,7 +46,7 @@ action :enable do
 
   # enables profile passed in by resource call
   execute "tuned #{profile[:name]} enable" do
-    command "tuned-adm profile #{profile[:name]}"
+    command "/usr/sbin/tuned-adm profile #{profile[:name]}"
   end
 end
 
@@ -58,7 +58,7 @@ action :disable do
 
   # disables profile passed in by resource call
   execute "tuned #{profile[:name]} disable" do
-    command 'tuned-adm off'
+    command '/usr/sbin/tuned-adm off'
   end
 end
 
@@ -71,7 +71,7 @@ action :default do
 
   # parses the recommended profile and enables it
   execute "tuned #{profile[:name]} default" do
-    command 'tuned-adm recommend|xargs -r tuned-adm profile'
+    command '/usr/sbin/tuned-adm recommend|xargs -r /usr/sbin/tuned-adm profile'
   end
 end
 
