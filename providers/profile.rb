@@ -47,6 +47,7 @@ action :enable do
   # enables profile passed in by resource call
   execute "tuned #{profile[:name]} enable" do
     command "/usr/sbin/tuned-adm profile #{profile[:name]}"
+    not_if "/usr/sbin/tuned-adm active | grep -q 'Current active profile: #{profile[:name]}'"
   end
 end
 
